@@ -20,7 +20,7 @@ class TmpItemReferenceTable extends Table {
     @Override
     protected void defineColumns(Map<String, String> columns) {
         columns.put(KEY, "INTEGER PRIMARY KEY");
-        columns.put(REF_ID, "INTEGER");
+        columns.put(REF_ID, "TEXT");
         columns.put(TAG, "TEXT");
         columns.put(TIMESTAMP, "INTEGER");
         columns.put(UNREAD, "INTEGER");

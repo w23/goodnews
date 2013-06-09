@@ -7,13 +7,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class ElementId implements Comparable<ElementId> {
-	private static final Pattern patternLabel = Pattern.compile("^user/([0-9]|\\-)+/label/(.*)");
-	private static final Pattern patternState = Pattern.compile("^user/([0-9]|\\-)+/state/(.*)");
-    private static final Pattern patternSource = Pattern.compile("^user/([0-9]|\\-)+/source/(.*)");
+	private static final Pattern patternLabel = Pattern.compile("^user/([a-fA-F0-9]|\\-)+/label/(.*)");
+	private static final Pattern patternState = Pattern.compile("^user/([a-fA-F0-9]|\\-)+/state/(.*)");
+    private static final Pattern patternSource = Pattern.compile("^user/([a-fA-F0-9]|\\-)+/source/(.*)");
 	private static final Pattern patternFeed = Pattern.compile("^feed/.*");
     private static final Pattern patternPopular = Pattern.compile("^pop/.*");
-    private static final Pattern patternAlert = Pattern.compile("^user/([0-9]|\\-)+/state/com.google/alerts/(.*)");
-	private static final Pattern patternItem = Pattern.compile("tag:google.com,2005:reader/item/(.*)");
+    private static final Pattern patternAlert = Pattern.compile("^user/([a-fA-F0-9]|\\-)+/state/com.google/alerts/(.*)");
+	private static final Pattern patternItem = Pattern.compile("tag:test.theoldreader.com,2005:reader/item/(.*)");
 	
 	private final String id;
 	private final String urlEncodedId;
@@ -24,7 +24,7 @@ public final class ElementId implements Comparable<ElementId> {
 	}
 
     public static ElementId createItemId(long itemReferenceId) {
-        return new ElementId(String.format("tag:google.com,2005:reader/item/%016x", itemReferenceId));
+        return new ElementId(String.format("tag:test.theoldreader.com,2005:reader/item/%016x", itemReferenceId));
     }
 
 	public ElementId(String id) {

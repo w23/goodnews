@@ -19,7 +19,7 @@ public class ItemReferenceJsonAdapter implements JsonAdapter<ItemReference> {
     public ItemReference read(JSONObject json) throws JSONException {
         final ItemReference ref = create();
 
-        ref.setId(Long.parseLong(json.getString("id")));
+        ref.setId(json.getString("id"));
         ref.setTimestampUSec(Long.parseLong(json.getString("timestampUsec")));
 
         final JSONArray jsonDirectStreamIds = json.getJSONArray("directStreamIds");

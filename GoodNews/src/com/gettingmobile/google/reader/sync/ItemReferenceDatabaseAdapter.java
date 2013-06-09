@@ -82,13 +82,13 @@ public class ItemReferenceDatabaseAdapter extends AbstractDatabaseAdapter<ItemRe
         }
     }
 
-    public long[] readAllReferenceIds(SQLiteDatabase db) {
+    public String[] readAllReferenceIds(SQLiteDatabase db) {
         final Cursor c = db.rawQuery("SELECT refId FROM tmpItemReference", null);
         try {
-            final long[] refIds = new long[c.getCount()];
+            final String[] refIds = new String[c.getCount()];
             if (c.moveToFirst()) {
                 for (int i = 0; i < refIds.length; ++i) {
-                    refIds[i] = c.getLong(0);
+                    refIds[i] = c.getString(0);
                     if (!c.moveToNext()) break;
                 }
             }
@@ -144,7 +144,7 @@ public class ItemReferenceDatabaseAdapter extends AbstractDatabaseAdapter<ItemRe
     public ItemReference readCurrent(Cursor c) {
         final ItemReference ref = super.readCurrent(c);
 
-        ref.setId(c.getLong(c.getColumnIndex(REF_ID)));
+        ref.setId(c.getString(c.getColumnIndex(REF_ID)));
         final String tag = c.getString(c.getColumnIndex(TAG));
         if (tag != null) {
             final List<ElementId> tags = new ArrayList<ElementId>(1);

@@ -33,7 +33,7 @@ public class ItemTable extends ElementTable {
 	@Override
 	protected void defineColumns(Map<String, String> columns) {
 		super.defineColumns(columns);
-        columns.put(REF_ID, "INTEGER");
+        columns.put(REF_ID, "TEXT");
 		columns.put(FEED_ID, "TEXT");
         columns.put(FEED_TITLE, "TEXT");
 		columns.put(TIMESTAMP, "INTEGER");

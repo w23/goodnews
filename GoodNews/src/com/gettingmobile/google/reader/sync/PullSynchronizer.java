@@ -465,17 +465,17 @@ public final class PullSynchronizer extends AbstractSynchronizer {
 		return itemCount / pageSize + (itemCount % pageSize > 0 ? 1 : 0);
 	}
 
-    private static long[] getItemReferenceIdsPage(List<ItemReference> refs, int start, int count) {
+    private static String[] getItemReferenceIdsPage(List<ItemReference> refs, int start, int count) {
         final int size = Math.min(count, refs.size() - start);
-        final long[] page = new long[size];
+        final String[] page = new String[size];
         for (int i = start; i < start + size; ++i) {
             page[i - start] = refs.get(i).getId();
         }
         return page;
     }
 
-    private static Map<Long, ElementId> getItemReferencePageMap(List<ItemReference> refs, int start, int count) {
-        final Map<Long, ElementId> map = new HashMap<Long, ElementId>();
+    private static Map<String, ElementId> getItemReferencePageMap(List<ItemReference> refs, int start, int count) {
+        final Map<String, ElementId> map = new HashMap<String, ElementId>();
         final int end = Math.min(start + count, refs.size());
         for (int i = start; i < end; ++i) {
             final ItemReference ref = refs.get(i);
@@ -528,7 +528,7 @@ public final class PullSynchronizer extends AbstractSynchronizer {
         }
     }
 
-    private int writeItemList(SyncCallbackHelper callback, ItemStream items, Map<Long, ElementId> mapRefToOrigin) throws SyncException {
+    private int writeItemList(SyncCallbackHelper callback, ItemStream items, Map<String, ElementId> map) throws SyncException {
         final ItemTagChangeDatabaseAdapter itemTagChangeAdapter = new ItemTagChangeDatabaseAdapter();
         final SQLiteDatabase db = getDbHelper().getDatabase();
         db.beginTransaction();
@@ -544,7 +544,7 @@ public final class PullSynchronizer extends AbstractSynchronizer {
                      * ensure that we use a known feed id instead of the article's real feed id
                      * (important e.g. for Google's "What's popular" meta feed)
                      */
-                    final ElementId originId = mapRefToOrigin.get(item.getId().getItemReferenceId());
+                    final ElementId originId = map.get(item.getId().getItemReferenceId());
                     if (originId != null && originId.getType() == ElementType.FEED) {
                         item.setFeedId(originId);
                     }

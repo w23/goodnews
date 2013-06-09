@@ -14,7 +14,7 @@ public class ItemBlacklistTable extends Table {
 
     @Override
     protected void defineColumns(Map<String, String> columns) {
-        columns.put(REF_ID, "INTEGER");
+        columns.put(REF_ID, "TEXT");
     }
 
     @Override
