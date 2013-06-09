@@ -35,7 +35,7 @@ public class AuthorizationRequest extends AbstractRequest<String> {
     public AuthorizationRequest(String email, String password, String service) {
         super();
         //request = new HttpPost(UriFactory.createUri("https://www.google.com/accounts/ClientLogin"));
-        request = new HttpPost(UriFactory.createUri("http://test.theoldreader.com/users/sign_in"));
+        request = new HttpPost(UriFactory.createUri("http://test.theoldreader.com/accounts/ClientLogin"));
 
         final List<NameValuePair> formValues = new ArrayList<NameValuePair>(4);
         formValues.add(new BasicNameValuePair("accountType", "HOSTED_OR_GOOGLE"));
