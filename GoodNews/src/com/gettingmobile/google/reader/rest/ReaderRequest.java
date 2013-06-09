@@ -17,7 +17,8 @@ import java.net.URISyntaxException;
  * @author sven.wiegand
  */
 public abstract class ReaderRequest<R extends HttpRequestBase, T> extends AbstractRequest<T> {
-    protected static final String BASE_URI = "https://www.google.com/reader";
+    //protected static final String BASE_URI = "https://www.google.com/reader";
+	protected static final String BASE_URI = "http://test.theoldreader.com/reader";
     protected static final int MAX_URI_LENGTH = 2048;
     private final URI uri;
     private HttpUriRequest request = null;
